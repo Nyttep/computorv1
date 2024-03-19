@@ -18,11 +18,17 @@ NAME = computorv1
 RM = rm -rf
 
 SRCS_NAME =	main.cpp \
+			Equation.cpp \
+			Expression.cpp \
+			Term.cpp \
 
 SRCS_PATH =	srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
 
 INCS_NAME =	computorv1.hpp \
+			Equation.hpp \
+			Expression.hpp \
+			Term.hpp \
 
 INCS_PATH =	includes
 INCS = $(addprefix $(INCS_PATH)/, $(INCS_NAME))
