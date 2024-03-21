@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include "Equation.hpp"
-#include "Expression.hpp"
 #include "Term.hpp"
+#include "Expression.hpp"
+#include "Equation.hpp"
 
 #endif

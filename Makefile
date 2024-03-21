@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -std=c++20 -g
 
 NAME = computorv1
 

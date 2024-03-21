@@ -13,6 +13,7 @@ public:
 	Expression(const Expression &src);
 	~Expression();
 	Expression &operator=(const Expression &rhs);
+	Expression &operator=(const std::string &rhs);
 };
 
 #endif

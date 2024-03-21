@@ -15,4 +15,6 @@ int main(int ac, char **av)
 	(void)av;
 	if (!check_args(ac))
 		return (1);
+
+	Equation eq = std::string(av[1]);
 }
