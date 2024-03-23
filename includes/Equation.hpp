@@ -15,6 +15,7 @@ public:
 	~Equation();
 	Equation &operator=(const Equation &rhs);
 	Equation &operator=(const std::string &rhs);
+	std::string tostr();
 };
 
 #endif

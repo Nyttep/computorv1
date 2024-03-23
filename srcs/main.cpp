@@ -17,4 +17,5 @@ int main(int ac, char **av)
 		return (1);
 
 	Equation eq = std::string(av[1]);
+	std::cout << "equation : " << eq.tostr() << std::endl;
 }

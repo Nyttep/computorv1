@@ -31,11 +31,13 @@ Equation &Equation::operator=(const Equation &rhs)
 
 Equation &Equation::operator=(const std::string &rhs)
 {
+	// std::erase(rhs, ' ');
 	std::string tmp = rhs.substr(0, rhs.length() - rhs.find('=') - 1);
-	std::erase(tmp, ' ');
 	this->lhs = tmp;
-	tmp = rhs.substr(rhs.find('=') + 1, rhs.length() - rhs.find('=') - 1);
-	std::erase(tmp, ' ');
+	if (rhs.find('=') != rhs.npos)
+		tmp = rhs.substr(rhs.find('=') + 1, rhs.length() - rhs.find('=') - 1);
+	else
+		tmp = "";
 	this->rhs = tmp;
 	return (*this);
 }
@@ -43,3 +45,8 @@ Equation &Equation::operator=(const std::string &rhs)
 // ------------- Setters & Getters ---------------------
 
 //------------------------- Other Functions -----------------------------
+
+std::string Equation::tostr()
+{
+	return (this->lhs.tostr() + " = " + this->rhs.tostr());
+}
