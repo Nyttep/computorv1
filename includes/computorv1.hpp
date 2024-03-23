@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <cstdlib>
 #include "Term.hpp"
 #include "Expression.hpp"
 #include "Equation.hpp"

@@ -6,9 +6,8 @@ class Term;
 class Expression
 {
 private:
-	std::vector<Term> terms;
-
 public:
+	std::vector<Term> terms;
 	Expression();
 	Expression(const Expression &src);
 	~Expression();

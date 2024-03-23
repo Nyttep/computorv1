@@ -32,10 +32,10 @@ Equation &Equation::operator=(const Equation &rhs)
 Equation &Equation::operator=(const std::string &rhs)
 {
 	// std::erase(rhs, ' ');
-	std::string tmp = rhs.substr(0, rhs.length() - rhs.find('=') - 1);
+	std::string tmp = rhs.substr(0, rhs.find('='));
 	this->lhs = tmp;
 	if (rhs.find('=') != rhs.npos)
-		tmp = rhs.substr(rhs.find('=') + 1, rhs.length() - rhs.find('=') - 1);
+		tmp = rhs.substr(rhs.find('=') + 1, rhs.length() - rhs.find('=') + 1);
 	else
 		tmp = "";
 	this->rhs = tmp;

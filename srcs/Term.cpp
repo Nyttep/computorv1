@@ -28,14 +28,13 @@ Term &Term::operator=(const Term &rhs)
 Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 {
 	std::string copy = rhs;
-	std::erase(copy, ' ');
 	if (rhs.length() > 0)
 		this->coef = std::stoi(copy);
 	else
 		this->coef = 0;
 	if (copy.find('^') != copy.npos)
 	{
-		this->power = std::stoi(&(copy[copy.find('^')]));
+		this->power = std::atoi(&(copy[copy.find('^') + 1]));
 		this->var = copy[copy.find('*') + 1];
 	}
 	else
@@ -53,8 +52,13 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 std::string Term::tostr()
 {
 	std::string ret;
-	ret = std::to_string(this->coef);
+	ret += std::to_string(std::abs(this->coef));
 	if (this->var != -1)
-		ret += " * " + this->var + '^';
+	{
+		ret += " * ";
+		ret += this->var;
+		ret += "^";
+		ret += std::to_string(this->power);
+	}
 	return (ret);
 }

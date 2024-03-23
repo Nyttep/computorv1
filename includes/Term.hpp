@@ -4,11 +4,10 @@
 class Term
 {
 private:
+public:
 	int coef;
 	int power;
 	char var;
-
-public:
 	Term();
 	Term(const Term &src);
 	~Term();

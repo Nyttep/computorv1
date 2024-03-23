@@ -28,17 +28,18 @@ Expression &Expression::operator=(const std::string &rhs)
 	std::string copy = rhs;
 	std::string tmp;
 	Term ins;
+	std::erase(copy, ' ');
 	while (true)
 	{
-		if (copy.find('+') != copy.npos)
+		if (copy.find('+', 1) != copy.npos)
 		{
-			tmp = copy.substr(0, copy.length() - copy.find('+') - 1);
-			copy.erase(0, copy.length() - copy.find('+') - 1);
+			tmp = copy.substr(0, copy.find('+', 1));
+			copy.erase(0, copy.find('+', 1));
 		}
-		else if (copy.find('-') != copy.npos)
+		else if (copy.find('-', 1) != copy.npos)
 		{
-			tmp = copy.substr(0, copy.length() - copy.find('-') - 1);
-			copy.erase(0, copy.length() - copy.find('-') - 1);
+			tmp = copy.substr(0, copy.find('-', 1));
+			copy.erase(0, copy.find('-', 1));
 		}
 		else
 			break;
@@ -58,8 +59,17 @@ Expression &Expression::operator=(const std::string &rhs)
 std::string Expression::tostr()
 {
 	std::string ret;
-	for (size_t i = 0; i < terms.size(); i++)
+	ret += terms[0].tostr();
+	for (size_t i = 1; i < terms.size(); i++)
 	{
+		if (terms[i].coef >= 0)
+		{
+			ret += " + ";
+		}
+		else
+		{
+			ret += " - ";
+		}
 		ret += terms[i].tostr();
 	}
 	return (ret);
