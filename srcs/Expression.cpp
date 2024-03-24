@@ -29,23 +29,41 @@ Expression &Expression::operator=(const std::string &rhs)
 	std::string tmp;
 	Term ins;
 	std::erase(copy, ' ');
-	while (true)
+	std::size_t posPlus = copy.find('+', 1);
+	std::size_t posMinus = copy.find('-', 1);
+	while (posPlus != copy.npos || posMinus != copy.npos)
 	{
-		if (copy.find('+', 1) != copy.npos)
+		if (posPlus != copy.npos)
 		{
-			tmp = copy.substr(0, copy.find('+', 1));
-			copy.erase(0, copy.find('+', 1));
-		}
-		else if (copy.find('-', 1) != copy.npos)
-		{
-			tmp = copy.substr(0, copy.find('-', 1));
-			copy.erase(0, copy.find('-', 1));
+			if (posMinus != copy.npos)
+			{
+				if (posMinus < posPlus)
+				{
+					tmp = copy.substr(0, posMinus);
+					copy.erase(0, posMinus);
+				}
+				else
+				{
+					tmp = copy.substr(0, posPlus);
+					copy.erase(0, posPlus);
+				}
+			}
+			else
+			{
+				tmp = copy.substr(0, posPlus);
+				copy.erase(0, posPlus);
+			}
 		}
 		else
-			break;
+		{
+			tmp = copy.substr(0, posMinus);
+			copy.erase(0, posMinus);
+		}
 		ins = tmp;
 		this->terms.push_back(ins);
 		tmp.clear();
+		posPlus = copy.find('+', 1);
+		posMinus = copy.find('-', 1);
 	}
 	ins = copy;
 	this->terms.push_back(ins);
