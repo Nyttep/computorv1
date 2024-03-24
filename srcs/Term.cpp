@@ -52,13 +52,20 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 std::string Term::tostr()
 {
 	std::string ret;
-	ret += std::to_string(std::abs(this->coef));
-	if (this->var != -1)
+	if (this->coef != 1 && this->coef != -1)
 	{
-		ret += " * ";
+		ret += std::to_string(std::abs(this->coef));
+	}
+	if (this->power > 0)
+	{
+		if (!ret.empty())
+			ret += " * ";
 		ret += this->var;
-		ret += "^";
-		ret += std::to_string(this->power);
+		if (this->power == 2)
+		{
+			ret += "^";
+			ret += std::to_string(this->power);
+		}
 	}
 	return (ret);
 }
