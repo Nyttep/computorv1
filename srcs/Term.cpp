@@ -29,13 +29,20 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 {
 	std::string copy = rhs;
 	if (rhs.length() > 0)
-		this->coef = std::stoi(copy);
+	{
+		if (std::isdigit(rhs[0]) || std::isdigit(rhs[1]))
+			this->coef = std::stoi(copy);
+		else if (rhs[0] == '+')
+			this->coef = 1;
+		else
+			this->coef = -1;
+	}
 	else
 		this->coef = 0;
 	if (copy.find('^') != copy.npos)
 	{
 		this->power = std::atoi(&(copy[copy.find('^') + 1]));
-		this->var = copy[copy.find('*') + 1];
+		this->var = copy[copy.find('^') - 1];
 	}
 	else
 	{
@@ -52,11 +59,11 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 std::string Term::tostr()
 {
 	std::string ret;
-	if (this->coef != 1 && this->coef != -1)
+	if ((this->coef != 1 && this->coef != -1) || this->var == -1)
 	{
 		ret += std::to_string(std::abs(this->coef));
 	}
-	if (this->power > 0)
+	if (this->power > 0 && this->coef != 0)
 	{
 		if (!ret.empty())
 			ret += " * ";
