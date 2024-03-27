@@ -44,6 +44,11 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 		this->power = std::atoi(&(copy[copy.find('^') + 1]));
 		this->var = copy[copy.find('^') - 1];
 	}
+	else if (copy.find('*') != copy.npos)
+	{
+		this->power = 1;
+		this->var = copy[copy.find('*') + 1];
+	}
 	else
 	{
 		this->power = 0;
@@ -59,9 +64,11 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 std::string Term::tostr()
 {
 	std::string ret;
+	std::ostringstream ss;
 	if ((this->coef != 1 && this->coef != -1) || this->var == -1)
 	{
-		ret += std::to_string(std::abs(this->coef));
+		ss << std::abs(this->coef);
+		ret += ss.str();
 	}
 	if (this->power > 0 && this->coef != 0)
 	{
