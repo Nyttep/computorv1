@@ -6,9 +6,9 @@ class Expression;
 class Equation
 {
 private:
-public:
 	Expression lhs;
 	Expression rhs;
+public:
 	Equation();
 	Equation(std::string src);
 	Equation(const Equation &src);
@@ -16,6 +16,7 @@ public:
 	Equation &operator=(const Equation &rhs);
 	Equation &operator=(const std::string &rhs);
 	std::string tostr();
+	void	reduce();
 };
 
 #endif

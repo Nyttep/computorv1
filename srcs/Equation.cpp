@@ -50,3 +50,15 @@ std::string Equation::tostr()
 {
 	return (this->lhs.tostr() + " = " + this->rhs.tostr());
 }
+
+void	Equation::reduce()
+{
+	rhs.reduce();
+	//passer le rhs à 0
+	for (size_t i = 0; i < rhs.terms.size(); i++)
+	{
+		lhs -= rhs.terms[i];
+		rhs -= rhs.terms[i];
+	}
+	lhs.reduce();
+}
