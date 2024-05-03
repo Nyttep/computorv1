@@ -6,9 +6,10 @@ class Expression;
 class Equation
 {
 private:
-public:
 	Expression lhs;
 	Expression rhs;
+
+public:
 	Equation();
 	Equation(std::string src);
 	Equation(const Equation &src);

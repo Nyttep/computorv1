@@ -7,6 +7,7 @@
 #include <utility>
 #include <cstdlib>
 #include <cctype>
+#include <sstream>
 #include "Term.hpp"
 #include "Expression.hpp"
 #include "Equation.hpp"

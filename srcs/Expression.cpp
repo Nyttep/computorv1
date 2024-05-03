@@ -70,6 +70,17 @@ Expression &Expression::operator=(const std::string &rhs)
 	return (*this);
 }
 
+Expression &Expression::operator-(const Term &rhs)
+{
+	for (size_t i = 0; i < terms.size(); i++)
+	{
+		if (rhs.power == terms[i].power)
+		{
+			terms[i].coef -= rhs.coef;
+		}
+	}
+}
+
 // ------------- Setters & Getters ---------------------
 
 //------------------------- Other Functions -----------------------------

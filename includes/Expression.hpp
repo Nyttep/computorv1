@@ -13,6 +13,7 @@ public:
 	~Expression();
 	Expression &operator=(const Expression &rhs);
 	Expression &operator=(const std::string &rhs);
+	Expression &operator-(const Term &rhs);
 	std::string tostr();
 	bool checkValid();
 	void simplify();

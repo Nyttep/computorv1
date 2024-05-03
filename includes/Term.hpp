@@ -5,7 +5,7 @@ class Term
 {
 private:
 public:
-	int coef;
+	double coef;
 	int power;
 	char var;
 	Term();
