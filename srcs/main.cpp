@@ -4,7 +4,6 @@ int check_args(int ac)
 {
 	if (ac != 2)
 	{
-		std::cout << "usage: ./computorv1 <equation>" << std::endl;
 		return (0);
 	}
 	return (1);
@@ -12,10 +11,24 @@ int check_args(int ac)
 
 int main(int ac, char **av)
 {
-	(void)av;
-	if (!check_args(ac))
+	if (!check_args(ac)) // check if there is only one argument
+	{
+		std::cout << "usage: ./computorv1 <equation>" << std::endl;
 		return (1);
+	}
 
-	Equation eq = std::string(av[1]);
-	std::cout << "equation : " << eq.tostr() << std::endl;
+	Equation eq = std::string(av[1]); // extract equation from args
+
+	// check if equation is valid
+	try
+	{
+		eq.checkValid();
+	}
+	catch (const char *e)
+	{
+		std::cerr << e << '\n';
+		return (1);
+	}
+
+	std::cout << "equation : " << eq.tostr() << std::endl; // display equation
 }

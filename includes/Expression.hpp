@@ -14,6 +14,7 @@ public:
 	Expression &operator=(const Expression &rhs);
 	Expression &operator=(const std::string &rhs);
 	std::string tostr();
+	bool checkValid();
 };
 
 #endif

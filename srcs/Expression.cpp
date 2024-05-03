@@ -74,6 +74,32 @@ Expression &Expression::operator=(const std::string &rhs)
 
 //------------------------- Other Functions -----------------------------
 
+bool Expression::checkValid()
+{
+	char var = -1;
+	for (size_t i = 0; i < terms.size(); i++)
+	{
+		if (terms[i].power > 2)
+		{
+			throw "Invalid power: can only solve equations up to power 2";
+			return (0);
+		}
+		if (terms[i].var != -1)
+		{
+			if (var == -1)
+			{
+				var = terms[i].var;
+			}
+			else if (var != terms[i].var)
+			{
+				throw "Invalid variable: can only solve equations with one variable";
+				return (0);
+			}
+		}
+	}
+	return (1);
+}
+
 std::string Expression::tostr()
 {
 	std::string ret;

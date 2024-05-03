@@ -46,6 +46,13 @@ Equation &Equation::operator=(const std::string &rhs)
 
 //------------------------- Other Functions -----------------------------
 
+bool Equation::checkValid()
+{
+	if (this->lhs.checkValid() && this->rhs.checkValid())
+		return (1);
+	return (0);
+}
+
 std::string Equation::tostr()
 {
 	return (this->lhs.tostr() + " = " + this->rhs.tostr());
