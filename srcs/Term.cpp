@@ -39,15 +39,24 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 	}
 	else
 		this->coef = 0;
-	if (copy.find('^') != copy.npos)
+
+	// find var and power, var can be any letter, power is always an int, if no power, power = 1, if no var, var = -1 and power = 0
+	if (copy.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") != copy.npos)
 	{
-		this->power = std::atoi(&(copy[copy.find('^') + 1]));
-		this->var = copy[copy.find('^') - 1];
+		this->var = copy[copy.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")];
+		if (copy.find('^') != copy.npos)
+		{
+			this->power = std::atoi(&(copy[copy.find('^') + 1]));
+		}
+		else
+		{
+			this->power = 1;
+		}
 	}
 	else
 	{
-		this->power = 0;
 		this->var = -1;
+		this->power = 0;
 	}
 	return (*this);
 }
@@ -68,7 +77,7 @@ std::string Term::tostr()
 		if (!ret.empty())
 			ret += " * ";
 		ret += this->var;
-		if (this->power == 2)
+		if (this->power >= 2)
 		{
 			ret += "^";
 			ret += std::to_string(this->power);
