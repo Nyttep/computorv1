@@ -100,6 +100,22 @@ bool Expression::checkValid()
 	return (1);
 }
 
+void Expression::simplify()
+{
+	for (size_t i = 0; i < terms.size(); i++)
+	{
+		for (size_t j = i + 1; j < terms.size(); j++)
+		{
+			if (terms[i].var == terms[j].var && terms[i].power == terms[j].power)
+			{
+				terms[i].coef += terms[j].coef;
+				terms.erase(terms.begin() + j);
+				j--;
+			}
+		}
+	}
+}
+
 std::string Expression::tostr()
 {
 	std::string ret;

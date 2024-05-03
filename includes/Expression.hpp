@@ -15,6 +15,7 @@ public:
 	Expression &operator=(const std::string &rhs);
 	std::string tostr();
 	bool checkValid();
+	void simplify();
 };
 
 #endif

@@ -53,6 +53,19 @@ bool Equation::checkValid()
 	return (0);
 }
 
+void Equation::simplify()
+{
+	// move everything to the left side
+	while (this->rhs.terms.size() > 0)
+	{
+		this->lhs.terms.push_back(this->rhs.terms[0]);
+		this->rhs.terms.erase(this->rhs.terms.begin());
+	}
+	this->rhs.terms[0].coef = 0;
+
+	this->lhs.simplify();
+}
+
 std::string Equation::tostr()
 {
 	return (this->lhs.tostr() + " = " + this->rhs.tostr());

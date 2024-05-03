@@ -32,10 +32,10 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 	{
 		if (std::isdigit(rhs[0]) || std::isdigit(rhs[1]))
 			this->coef = std::stoi(copy);
-		else if (rhs[0] == '+')
-			this->coef = 1;
-		else
+		else if (rhs[0] == '-')
 			this->coef = -1;
+		else
+			this->coef = 1;
 	}
 	else
 		this->coef = 0;
@@ -43,7 +43,7 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 	// find var and power, var can be any letter, power is always an int, if no power, power = 1, if no var, var = -1 and power = 0
 	if (copy.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ") != copy.npos)
 	{
-		this->var = copy[copy.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")];
+		this->var = toupper(copy[copy.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")]);
 		if (copy.find('^') != copy.npos)
 		{
 			this->power = std::atoi(&(copy[copy.find('^') + 1]));

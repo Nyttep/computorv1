@@ -30,5 +30,18 @@ int main(int ac, char **av)
 		return (1);
 	}
 
+	eq.simplify(); // simplify equation
+
+	// check if equation is still valid
+	try
+	{
+		eq.checkValid();
+	}
+	catch (const char *e)
+	{
+		std::cerr << "AFTER SIMPLIFICATION " << e << '\n';
+		return (1);
+	}
+
 	std::cout << "equation : " << eq.tostr() << std::endl; // display equation
 }
