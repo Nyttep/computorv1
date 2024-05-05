@@ -70,3 +70,27 @@ std::string Equation::tostr()
 {
 	return (this->lhs.tostr() + " = " + this->rhs.tostr());
 }
+
+uint8_t Equation::getDegree()
+{
+	return (this->lhs.getDegree());
+}
+
+void Equation::solve()
+{
+	switch (this->getDegree())
+	{
+	case 0:
+	{
+		std::cout << "Polynomial degree: 0" << std::endl;
+		if (this->lhs.terms[0].coef == 0)
+			std::cout << "This equation is a constant polynomial, it is always true" << std::endl;
+		else
+			std::cout << "This equation is always false" << std::endl;
+		break;
+	}
+
+	default:
+		break;
+	}
+}

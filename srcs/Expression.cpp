@@ -134,3 +134,16 @@ std::string Expression::tostr()
 	}
 	return (ret);
 }
+
+uint8_t Expression::getDegree()
+{
+	uint8_t degree = 0;
+	for (uint8_t i = 0; i < terms.size(); i++)
+	{
+		if (terms[i].power > degree)
+		{
+			degree = terms[i].power;
+		}
+	}
+	return (degree);
+}
