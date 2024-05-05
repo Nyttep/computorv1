@@ -102,6 +102,7 @@ bool Expression::checkValid()
 
 void Expression::simplify()
 {
+	// add all terms with the same power
 	for (size_t i = 0; i < terms.size(); i++)
 	{
 		for (size_t j = i + 1; j < terms.size(); j++)
@@ -114,12 +115,23 @@ void Expression::simplify()
 			}
 		}
 	}
+
+	// remove terms with coef 0
+	for (size_t i = 0; i < terms.size(); i++)
+	{
+		if (terms[i].coef == 0)
+		{
+			terms.erase(terms.begin() + i);
+			i--;
+		}
+	}
 }
 
 void Expression::normalize()
 {
 	std::vector<Term> sortedTerms;
 
+	// sort terms by power
 	sortedTerms.resize(this->terms.size());
 	for (size_t i = 0; i < this->terms.size(); i++)
 	{

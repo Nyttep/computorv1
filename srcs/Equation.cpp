@@ -58,6 +58,7 @@ void Equation::simplify()
 	// move everything to the left side
 	while (this->rhs.terms.size() > 0)
 	{
+		this->rhs.terms[0].coef *= -1;
 		this->lhs.terms.push_back(this->rhs.terms[0]);
 		this->rhs.terms.erase(this->rhs.terms.begin());
 	}
@@ -94,9 +95,23 @@ void Equation::solve()
 	case 1:
 	{
 		std::cout << "Polynomial degree: 1" << std::endl;
+		std::cout << "The solution is:" << std::endl;
+		double ret = this->solveDegree1();
+
+		if (this->solveDegree1() == (int)this->solveDegree1()) // check if the result of the division is a whole number
+			std::cout << ret << std::endl;
+		else // if not, also display the result as a fraction
+			std::cout << -(this->lhs.terms[0].coef) << "/" << this->lhs.terms[1].coef << " (" << ret << ")" << std::endl;
 	}
 
 	default:
 		break;
 	}
+}
+
+double Equation::solveDegree1()
+{
+	double a = this->lhs.terms[0].coef;
+	double b = this->lhs.terms[1].coef;
+	return (-a / b);
 }

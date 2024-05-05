@@ -31,7 +31,7 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 	if (rhs.length() > 0)
 	{
 		if (std::isdigit(rhs[0]) || std::isdigit(rhs[1]))
-			this->coef = std::stoi(copy);
+			this->coef = std::stod(copy);
 		else if (rhs[0] == '-')
 			this->coef = -1;
 		else

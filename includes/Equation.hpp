@@ -21,6 +21,7 @@ public:
 	void simplify();
 	uint8_t getDegree();
 	void solve();
+	double solveDegree1();
 };
 
 #endif
