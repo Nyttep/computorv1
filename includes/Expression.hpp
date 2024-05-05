@@ -16,6 +16,7 @@ public:
 	std::string tostr();
 	bool checkValid();
 	void simplify();
+	void normalize();
 	uint8_t getDegree();
 };
 

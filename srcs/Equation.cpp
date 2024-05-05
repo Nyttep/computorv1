@@ -64,6 +64,7 @@ void Equation::simplify()
 	this->rhs.terms[0].coef = 0;
 
 	this->lhs.simplify();
+	this->lhs.normalize();
 }
 
 std::string Equation::tostr()
@@ -88,6 +89,11 @@ void Equation::solve()
 		else
 			std::cout << "This equation is always false" << std::endl;
 		break;
+	}
+
+	case 1:
+	{
+		std::cout << "Polynomial degree: 1" << std::endl;
 	}
 
 	default:

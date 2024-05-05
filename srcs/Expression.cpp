@@ -116,6 +116,18 @@ void Expression::simplify()
 	}
 }
 
+void Expression::normalize()
+{
+	std::vector<Term> sortedTerms;
+
+	sortedTerms.resize(this->terms.size());
+	for (size_t i = 0; i < this->terms.size(); i++)
+	{
+		sortedTerms[this->terms[i].power] = this->terms[i];
+	}
+	this->terms = sortedTerms;
+}
+
 std::string Expression::tostr()
 {
 	std::string ret;
