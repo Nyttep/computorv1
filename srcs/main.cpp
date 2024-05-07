@@ -43,7 +43,7 @@ int main(int ac, char **av)
 		return (1);
 	}
 
-	std::cout << "equation : " << eq.tostr() << std::endl; // display equation
+	std::cout << "Reduced form : " << eq.tostr() << std::endl; // display equation
 
 	eq.solve(); // solve equation
 }

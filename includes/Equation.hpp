@@ -22,6 +22,8 @@ public:
 	uint8_t getDegree();
 	void solve();
 	double solveDegree1();
+	double getDelta();
+	std::pair<double, double> solveDegree2(double delta);
 };
 
 #endif

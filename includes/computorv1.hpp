@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <cctype>
 #include <sstream>
+#include <utility>
+#include <cmath>
 #include "Term.hpp"
 #include "Expression.hpp"
 #include "Equation.hpp"

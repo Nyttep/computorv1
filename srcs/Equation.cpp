@@ -96,12 +96,46 @@ void Equation::solve()
 	{
 		std::cout << "Polynomial degree: 1" << std::endl;
 		std::cout << "The solution is:" << std::endl;
+
 		double ret = this->solveDegree1();
 
-		if (this->solveDegree1() == (int)this->solveDegree1()) // check if the result of the division is a whole number
+		if (ret == (int)ret) // check if the result of the division is a whole number
 			std::cout << ret << std::endl;
 		else // if not, also display the result as a fraction
 			std::cout << -(this->lhs.terms[0].coef) << "/" << this->lhs.terms[1].coef << " (" << ret << ")" << std::endl;
+		break;
+	}
+
+	case 2:
+	{
+		std::cout << "Polynomial degree: 2" << std::endl;
+		double delta = this->getDelta();
+		std::pair<double, double> ret = this->solveDegree2(delta);
+		if (delta > 0)
+		{
+			std::cout << "Discriminant is strictly positive, the two solutions are:" << std::endl;
+			if (ret.first == (int)ret.first)
+				std::cout << ret.first << std::endl;
+			else
+				std::cout << -(this->lhs.terms[1].coef) + sqrt(delta) << "/" << 2 * this->lhs.terms[0].coef << " (" << ret.first << ")" << std::endl;
+			if (ret.second == (int)ret.second)
+				std::cout << ret.second << std::endl;
+			else
+				std::cout << -(this->lhs.terms[1].coef) - sqrt(delta) << "/" << 2 * this->lhs.terms[0].coef << " (" << ret.second << ")" << std::endl;
+		}
+		else if (delta == 0)
+		{
+			std::cout << "Discriminant is equal to zero, the solution is:" << std::endl;
+			if (ret.first == (int)ret.first)
+				std::cout << ret.first << std::endl;
+			else
+				std::cout << -(this->lhs.terms[1].coef) << "/" << 2 * this->lhs.terms[0].coef << " (" << ret.first << ")" << std::endl;
+		}
+		else
+		{
+			std::cout << "Discriminant is strictly negative, there is no real solution" << std::endl;
+		}
+		break;
 	}
 
 	default:
@@ -114,4 +148,33 @@ double Equation::solveDegree1()
 	double a = this->lhs.terms[0].coef;
 	double b = this->lhs.terms[1].coef;
 	return (-a / b);
+}
+
+double Equation::getDelta()
+{
+	double a = this->lhs.terms[2].coef;
+	double b = this->lhs.terms[1].coef;
+	double c = this->lhs.terms[0].coef;
+	return (b * b - 4 * a * c);
+}
+
+std::pair<double, double> Equation::solveDegree2(double delta)
+{
+	double a = this->lhs.terms[2].coef;
+	double b = this->lhs.terms[1].coef;
+	if (delta > 0)
+	{
+		double x1 = (-b + sqrt(delta)) / (2 * a);
+		double x2 = (-b - sqrt(delta)) / (2 * a);
+		return (std::make_pair(x1, x2));
+	}
+	else if (delta == 0)
+	{
+		double x = -b / (2 * a);
+		return (std::make_pair(x, x));
+	}
+	else
+	{
+		return (std::make_pair(0, 0));
+	}
 }
