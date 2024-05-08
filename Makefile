@@ -21,6 +21,7 @@ SRCS_NAME =	main.cpp \
 			Equation.cpp \
 			Expression.cpp \
 			Term.cpp \
+			utils.cpp \
 
 SRCS_PATH =	srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))
