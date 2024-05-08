@@ -1,14 +1,5 @@
 #include "computorv1.hpp"
 
-int check_args(int ac)
-{
-	if (ac != 2)
-	{
-		return (0);
-	}
-	return (1);
-}
-
 int main(int ac, char **av)
 {
 	if (!check_args(ac)) // check if there is only one argument

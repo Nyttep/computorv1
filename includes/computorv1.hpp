@@ -14,4 +14,6 @@
 #include "Expression.hpp"
 #include "Equation.hpp"
 
+int check_args(int ac);
+
 #endif
