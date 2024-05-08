@@ -8,7 +8,17 @@ int main(int ac, char **av)
 		return (1);
 	}
 
-	Equation eq = std::string(av[1]); // extract equation from args
+	Equation eq;
+
+	try
+	{
+		eq = std::string(av[1]); // extract equation from args
+	}
+	catch (const char *e)
+	{
+		std::cerr << e << '\n';
+		return (1);
+	}
 
 	// check if equation is valid
 	try

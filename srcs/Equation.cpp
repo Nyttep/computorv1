@@ -55,14 +55,17 @@ bool Equation::checkValid()
 
 void Equation::simplify()
 {
+	Term tmp;
+
 	// move everything to the left side
 	while (this->rhs.terms.size() > 0)
 	{
 		this->rhs.terms[0].coef *= -1;
 		this->lhs.terms.push_back(this->rhs.terms[0]);
+		tmp = this->rhs.terms[0];
 		this->rhs.terms.erase(this->rhs.terms.begin());
 	}
-	this->rhs.terms[0].coef = 0;
+	this->rhs.terms.push_back(tmp);
 
 	this->lhs.simplify();
 	this->lhs.normalize();
@@ -85,7 +88,7 @@ void Equation::solve()
 	case 0:
 	{
 		std::cout << "Polynomial degree: 0" << std::endl;
-		if (this->lhs.terms[0].coef == 0)
+		if (this->lhs.getCoef(0) == 0)
 			std::cout << "This equation is a constant polynomial, it is always true" << std::endl;
 		else
 			std::cout << "This equation is always false" << std::endl;
@@ -102,7 +105,7 @@ void Equation::solve()
 		if (ret == (int)ret) // check if the result of the division is a whole number
 			std::cout << ret << std::endl;
 		else // if not, also display the result as a fraction
-			std::cout << -(this->lhs.terms[0].coef) << "/" << this->lhs.terms[1].coef << " (" << ret << ")" << std::endl;
+			std::cout << -(this->lhs.getCoef(0)) << "/" << this->lhs.getCoef(1) << " (" << ret << ")" << std::endl;
 		break;
 	}
 
@@ -117,11 +120,11 @@ void Equation::solve()
 			if (ret.first == (int)ret.first)
 				std::cout << ret.first << std::endl;
 			else
-				std::cout << -(this->lhs.terms[1].coef) + sqrt(delta) << "/" << 2 * this->lhs.terms[0].coef << " (" << ret.first << ")" << std::endl;
+				std::cout << -(this->lhs.getCoef(1)) + sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 			if (ret.second == (int)ret.second)
 				std::cout << ret.second << std::endl;
 			else
-				std::cout << -(this->lhs.terms[1].coef) - sqrt(delta) << "/" << 2 * this->lhs.terms[0].coef << " (" << ret.second << ")" << std::endl;
+				std::cout << -(this->lhs.getCoef(1)) - sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.second << ")" << std::endl;
 		}
 		else if (delta == 0)
 		{
@@ -129,7 +132,7 @@ void Equation::solve()
 			if (ret.first == (int)ret.first)
 				std::cout << ret.first << std::endl;
 			else
-				std::cout << -(this->lhs.terms[1].coef) << "/" << 2 * this->lhs.terms[0].coef << " (" << ret.first << ")" << std::endl;
+				std::cout << -(this->lhs.getCoef(1)) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 		}
 		else
 		{
@@ -145,23 +148,23 @@ void Equation::solve()
 
 double Equation::solveDegree1()
 {
-	double a = this->lhs.terms[0].coef;
-	double b = this->lhs.terms[1].coef;
+	double a = this->lhs.getCoef(0);
+	double b = this->lhs.getCoef(1);
 	return (-a / b);
 }
 
 double Equation::getDelta()
 {
-	double a = this->lhs.terms[2].coef;
-	double b = this->lhs.terms[1].coef;
-	double c = this->lhs.terms[0].coef;
+	double a = this->lhs.getCoef(2);
+	double b = this->lhs.getCoef(1);
+	double c = this->lhs.getCoef(0);
 	return (b * b - 4 * a * c);
 }
 
 std::pair<double, double> Equation::solveDegree2(double delta)
 {
-	double a = this->lhs.terms[2].coef;
-	double b = this->lhs.terms[1].coef;
+	double a = this->lhs.getCoef(2);
+	double b = this->lhs.getCoef(1);
 	if (delta > 0)
 	{
 		double x1 = (-b + sqrt(delta)) / (2 * a);

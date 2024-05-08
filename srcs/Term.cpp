@@ -2,7 +2,7 @@
 
 //---------------------- Constructors & Destructors ----------------------
 
-Term::Term()
+Term::Term() : coef(0), power(0), var(-1)
 {
 }
 
@@ -30,8 +30,12 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 	std::string copy = rhs;
 	if (rhs.length() > 0)
 	{
-		if (std::isdigit(rhs[0]) || std::isdigit(rhs[1]))
+		if ((std::isdigit(rhs[0]) || std::isdigit(rhs[1])))
+		{
+			if (strToDoubleOverflow(copy))
+				throw "Error: Overflow on coefficient";
 			this->coef = std::stod(copy);
+		}
 		else if (rhs[0] == '-')
 			this->coef = -1;
 		else
@@ -46,6 +50,8 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 		this->var = toupper(copy[copy.find_first_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")]);
 		if (copy.find('^') != copy.npos)
 		{
+			if (strToIntOverflow(&(copy[copy.find('^') + 1])))
+				throw "Error: Overflow on power";
 			this->power = std::atoi(&(copy[copy.find('^') + 1]));
 		}
 		else

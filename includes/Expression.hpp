@@ -13,6 +13,7 @@ public:
 	~Expression();
 	Expression &operator=(const Expression &rhs);
 	Expression &operator=(const std::string &rhs);
+	double getCoef(uint8_t degree);
 	std::string tostr();
 	bool checkValid();
 	void simplify();

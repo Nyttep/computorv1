@@ -16,4 +16,7 @@
 
 int check_args(int ac);
 
+bool strToDoubleOverflow(std::string str);
+bool strToIntOverflow(std::string str);
+
 #endif

@@ -72,6 +72,18 @@ Expression &Expression::operator=(const std::string &rhs)
 
 // ------------- Setters & Getters ---------------------
 
+double Expression::getCoef(uint8_t degree)
+{
+	for (size_t i = 0; i < terms.size(); i++)
+	{
+		if (terms[i].power == degree)
+		{
+			return (terms[i].coef);
+		}
+	}
+	return (0);
+}
+
 //------------------------- Other Functions -----------------------------
 
 bool Expression::checkValid()
@@ -132,7 +144,7 @@ void Expression::normalize()
 	std::vector<Term> sortedTerms;
 
 	// sort terms by power
-	sortedTerms.resize(this->terms.size());
+	sortedTerms.resize(this->getDegree() + 1);
 	for (size_t i = 0; i < this->terms.size(); i++)
 	{
 		sortedTerms[this->terms[i].power] = this->terms[i];
