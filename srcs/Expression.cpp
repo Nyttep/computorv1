@@ -155,13 +155,18 @@ void Expression::normalize()
 std::string Expression::tostr()
 {
 	std::string ret;
-	if (terms[0].coef < 0)
+	if (terms[0].coef != 0)
 	{
-		ret += "-";
+		if (terms[0].coef < 0)
+		{
+			ret += "-";
+		}
+		ret += terms[0].tostr();
 	}
-	ret += terms[0].tostr();
 	for (size_t i = 1; i < terms.size(); i++)
 	{
+		if (terms[i].coef == 0)
+			continue;
 		if (terms[i].coef >= 0)
 		{
 			ret += " + ";

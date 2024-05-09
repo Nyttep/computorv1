@@ -19,6 +19,6 @@ int check_args(int ac);
 bool strToDoubleOverflow(std::string str);
 bool strToIntOverflow(std::string str);
 
-bool doubleOperationOvervlow(double lhs, double rhs, char op);
+bool doubleOperationOverflow(double lhs, double rhs, char op);
 
 #endif

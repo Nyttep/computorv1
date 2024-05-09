@@ -29,43 +29,75 @@ bool strToIntOverflow(std::string str)
 	return (0);
 }
 
-bool doubleOperationOvervlow(double lhs, double rhs, char op)
+// bool resIsPositive(double lhs, double rhs)
+// {
+// 	if (lhs > 0 && rhs > 0) // both positive
+// 	{
+// 		std::cout << "both positive" << std::endl;
+// 		return (true);
+// 	}
+// 	else if (lhs < 0 && rhs < 0) // both negative
+// 	{
+// 		std::cout << "both negative" << std::endl;
+// 		return (true);
+// 	}
+// 	return (false);
+// }
+
+bool doubleOperationOverflow(double lhs, double rhs, char op)
 {
 	if (op == '+')
 	{
 		if (rhs > 0 && lhs > std::numeric_limits<double>::max() - rhs)
 			return (1);
-		if (rhs < 0 && lhs < std::numeric_limits<double>::min() - rhs)
+		if (rhs < 0 && lhs < -std::numeric_limits<double>::max() - rhs)
 			return (1);
 	}
 	else if (op == '-')
 	{
-		if (rhs > 0 && lhs < std::numeric_limits<double>::min() + rhs)
+		if (rhs > 0 && lhs < -std::numeric_limits<double>::max() + rhs)
 			return (1);
 		if (rhs < 0 && lhs > std::numeric_limits<double>::max() + rhs)
 			return (1);
 	}
 	else if (op == '*')
 	{
-		if (lhs == -1 && rhs == std::numeric_limits<double>::min())
-			return (1);
-		if (rhs == -1 && lhs == std::numeric_limits<double>::min())
-			return (1);
-		if (rhs != 0 && lhs > std::numeric_limits<double>::max() / rhs)
-			return (1);
-		if (rhs != 0 && lhs < std::numeric_limits<double>::min() / rhs)
-			return (1);
+		if (rhs == 0)
+			return (0);
+		if (lhs > 0)
+		{
+			if (rhs > 0 && lhs > std::numeric_limits<double>::max() / rhs)
+				return (1);
+			if (rhs < 0 && lhs > -std::numeric_limits<double>::max() / rhs)
+				return (1);
+		}
+		else if (lhs < 0)
+		{
+			if (rhs > 0 && lhs < -std::numeric_limits<double>::max() / rhs)
+				return (1);
+			if (rhs < 0 && lhs < std::numeric_limits<double>::max() / rhs)
+				return (1);
+		}
 	}
 	else if (op == '/')
 	{
-		if (lhs == -1 && rhs == std::numeric_limits<double>::min())
-			return (1);
-		if (rhs == -1 && lhs == std::numeric_limits<double>::min())
-			return (1);
-		if (rhs < 1 && rhs > 0 && lhs > std::numeric_limits<double>::max() * rhs)
-			return (1);
-		if (rhs < 1 && rhs > 0 && lhs < std::numeric_limits<double>::min() * rhs)
-			return (1);
+		if (rhs > -1 && rhs < 0)
+		{
+			if (lhs > 0)
+			{
+				if (rhs > 0 && lhs > std::numeric_limits<double>::max() * rhs)
+					return (1);
+				if (rhs < 0 && lhs > -std::numeric_limits<double>::max() * rhs)
+					return (1);
+			}
+			else if (lhs < 0)
+			{
+				if (rhs > 0 && lhs < -std::numeric_limits<double>::max() * rhs)
+					return (1);
+				if (rhs < 0 && lhs < std::numeric_limits<double>::max() * rhs)
+					return (1);
+			}
+		}
 	}
 	return (0);
 }

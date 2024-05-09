@@ -88,6 +88,8 @@ std::string Term::tostr()
 {
 	std::string ret;
 	std::ostringstream ss;
+	if (this->coef == 0)
+		return ("");
 	if ((this->coef != 1 && this->coef != -1) || this->var == -1)
 	{
 		ss << std::abs(this->coef);
