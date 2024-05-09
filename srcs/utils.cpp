@@ -29,21 +29,6 @@ bool strToIntOverflow(std::string str)
 	return (0);
 }
 
-// bool resIsPositive(double lhs, double rhs)
-// {
-// 	if (lhs > 0 && rhs > 0) // both positive
-// 	{
-// 		std::cout << "both positive" << std::endl;
-// 		return (true);
-// 	}
-// 	else if (lhs < 0 && rhs < 0) // both negative
-// 	{
-// 		std::cout << "both negative" << std::endl;
-// 		return (true);
-// 	}
-// 	return (false);
-// }
-
 bool doubleOperationOverflow(double lhs, double rhs, char op)
 {
 	if (op == '+')
