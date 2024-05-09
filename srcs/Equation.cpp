@@ -150,6 +150,11 @@ double Equation::solveDegree1()
 {
 	double a = this->lhs.getCoef(0);
 	double b = this->lhs.getCoef(1);
+	if (doubleOperationOvervlow(-a, b, '/'))
+	{
+		std::cout << "Error: Division overflow when doing " << -a << "/" << b << std::endl;
+		exit(1);
+	}
 	return (-a / b);
 }
 
@@ -158,6 +163,26 @@ double Equation::getDelta()
 	double a = this->lhs.getCoef(2);
 	double b = this->lhs.getCoef(1);
 	double c = this->lhs.getCoef(0);
+	if (doubleOperationOvervlow(b, b, '*'))
+	{
+		std::cout << "Error: Multiplication overflow when doing " << b << "*" << b << std::endl;
+		exit(1);
+	}
+	if (doubleOperationOvervlow(4, a, '*'))
+	{
+		std::cout << "Error: Multiplication overflow when doing " << 4 << "*" << a << std::endl;
+		exit(1);
+	}
+	if (doubleOperationOvervlow(4 * a, c, '*'))
+	{
+		std::cout << "Error: Multiplication overflow when doing " << 4 * a << "*" << c << std::endl;
+		exit(1);
+	}
+	if (doubleOperationOvervlow(b * b, 4 * a * c, '-'))
+	{
+		std::cout << "Error: Substraction overflow when doing " << b * b << "-" << 4 * a * c << std::endl;
+		exit(1);
+	}
 	return (b * b - 4 * a * c);
 }
 
@@ -167,12 +192,47 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 	double b = this->lhs.getCoef(1);
 	if (delta > 0)
 	{
-		double x1 = (-b + sqrt(delta)) / (2 * a);
-		double x2 = (-b - sqrt(delta)) / (2 * a);
+		if (doubleOperationOvervlow(-b, sqrt(delta), '+'))
+		{
+			std::cout << "Error: Addition overflow when doing " << -b << "+" << sqrt(delta) << std::endl;
+			exit(1);
+		}
+		if (doubleOperationOvervlow(2, a, '*'))
+		{
+			std::cout << "Error: Multiplication overflow when doing " << 2 << "*" << a << std::endl;
+			exit(1);
+		}
+		if (doubleOperationOvervlow(-b + sqrt(delta), 2 * a, '/'))
+		{
+			std::cout << "Error: Division overflow when doing " << -b + sqrt(delta) << "/" << 2 * a << std::endl;
+			exit(1);
+		}
+		double x1 = (-b + std::sqrt(delta)) / (2 * a);
+		if (doubleOperationOvervlow(-b, sqrt(delta), '-'))
+		{
+			std::cout << "Error: Substraction overflow when doing " << -b << "-" << sqrt(delta) << std::endl;
+			exit(1);
+		}
+		if (doubleOperationOvervlow(-b - sqrt(delta), 2 * a, '/'))
+		{
+			std::cout << "Error: Division overflow when doing " << -b - sqrt(delta) << "/" << 2 * a << std::endl;
+			exit(1);
+		}
+		double x2 = (-b - std::sqrt(delta)) / (2 * a);
 		return (std::make_pair(x1, x2));
 	}
 	else if (delta == 0)
 	{
+		if (doubleOperationOvervlow(2, a, '*'))
+		{
+			std::cout << "Error: Multiplication overflow when doing " << 2 << "*" << a << std::endl;
+			exit(1);
+		}
+		if (doubleOperationOvervlow(-b, 2 * a, '/'))
+		{
+			std::cout << "Error: Division overflow when doing " << -b << "/" << 2 * a << std::endl;
+			exit(1);
+		}
 		double x = -b / (2 * a);
 		return (std::make_pair(x, x));
 	}

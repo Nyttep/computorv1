@@ -34,7 +34,15 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 		{
 			if (strToDoubleOverflow(copy))
 				throw "Error: Overflow on coefficient";
-			this->coef = std::stod(copy);
+			try
+			{
+				this->coef = std::stod(copy);
+			}
+			catch (const std::exception &e)
+			{
+				std::cerr << "Error: the coefficient of the term \"" << rhs << "\" is too precise" << '\n';
+				exit(1);
+			}
 		}
 		else if (rhs[0] == '-')
 			this->coef = -1;
