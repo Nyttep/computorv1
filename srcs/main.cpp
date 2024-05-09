@@ -52,7 +52,7 @@ int main(int ac, char **av)
 	}
 	catch (std::bad_alloc &e)
 	{
-		std::cerr << "Error: bad_alloc occured, you can try rerunning this program but your RAM seems to be overloaded" << '\n';
+		std::cerr << "Error: bad_alloc occured, you can try rerunning this program but your RAM seems to be overloaded\n";
 		return (1);
 	}
 }
