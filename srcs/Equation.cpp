@@ -55,17 +55,18 @@ bool Equation::checkValid()
 
 void Equation::simplify()
 {
-	Term tmp;
+	// Term tmp;
 
 	// move everything to the left side
 	while (this->rhs.terms.size() > 0)
 	{
 		this->rhs.terms[0].coef *= -1;
 		this->lhs.terms.push_back(this->rhs.terms[0]);
-		tmp = this->rhs.terms[0];
+		// tmp = this->rhs.terms[0];
 		this->rhs.terms.erase(this->rhs.terms.begin());
 	}
-	this->rhs.terms.push_back(tmp);
+	// this->rhs.terms.push_back(tmp);
+	// this->rhs.terms.push_back(Term());
 
 	this->lhs.simplify();
 	this->lhs.normalize();

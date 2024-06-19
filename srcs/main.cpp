@@ -42,7 +42,7 @@ int main(int ac, char **av)
 		}
 		catch (const char *e)
 		{
-			std::cerr << "AFTER SIMPLIFICATION " << e << '\n';
+			std::cerr << "Error: " << e << '\n';
 			return (1);
 		}
 

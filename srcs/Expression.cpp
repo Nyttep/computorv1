@@ -155,6 +155,10 @@ void Expression::normalize()
 std::string Expression::tostr()
 {
 	std::string ret;
+	if (terms.size() == 0)
+	{
+		return ("0");
+	}
 	if (terms[0].coef != 0)
 	{
 		if (terms[0].coef < 0)
