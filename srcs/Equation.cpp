@@ -114,27 +114,31 @@ void Equation::solve()
 	{
 		std::cout << "Polynomial degree: 2" << std::endl;
 		double delta = this->getDelta();
+		// commented parts are for separation of whole number/decimal number
 		if (delta > 0)
 		{
 			std::cout << "Discriminant is strictly positive, the two solutions are:" << std::endl;
 			std::pair<double, double> ret = this->solveDegree2(delta);
-			if (ret.first == (int)ret.first)
-				std::cout << ret.first << std::endl;
-			else
-				std::cout << -(this->lhs.getCoef(1)) + sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
-			if (ret.second == (int)ret.second)
-				std::cout << ret.second << std::endl;
-			else
-				std::cout << -(this->lhs.getCoef(1)) - sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.second << ")" << std::endl;
+
+			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
+			std::cout << ret.first << std::endl;
+			// else
+			// 	std::cout << -(this->lhs.getCoef(1)) + sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
+
+			// if (ret.second == (int)ret.second) // if the result of the equation is a whole number
+			std::cout << ret.second << std::endl;
+			// else
+			// 	std::cout << -(this->lhs.getCoef(1)) - sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.second << ")" << std::endl;
 		}
 		else if (delta == 0)
 		{
 			std::cout << "Discriminant is equal to zero, the solution is:" << std::endl;
 			std::pair<double, double> ret = this->solveDegree2(delta);
-			if (ret.first == (int)ret.first)
-				std::cout << ret.first << std::endl;
-			else
-				std::cout << -(this->lhs.getCoef(1)) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
+
+			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
+			std::cout << ret.first << std::endl;
+			// else
+			// 	std::cout << -(this->lhs.getCoef(1)) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 		}
 		else
 		{
@@ -185,7 +189,7 @@ double Equation::getDelta()
 		std::cout << "Error: Substraction overflow when doing " << b * b << " - " << 4 * a * c << std::endl;
 		exit(1);
 	}
-	std::cout << "Calculating determinant: " << b * b - 4 * a * c << " = " << b << " * " << b << " - " << 4 << " * " << a << " * " << c << std::endl;
+	std::cout << "Calculating determinant: " << b * b - 4 * a * c << " = " << b << "^2" << " - " << 4 << " * " << a << " * " << c << std::endl;
 	return (b * b - 4 * a * c);
 }
 
