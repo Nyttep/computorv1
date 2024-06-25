@@ -67,11 +67,6 @@ Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
 			this->power = 1;
 		}
 	}
-	else if (copy.find('*') != copy.npos)
-	{
-		this->power = 1;
-		this->var = copy[copy.find('*') + 1];
-	}
 	else
 	{
 		this->var = -1;
