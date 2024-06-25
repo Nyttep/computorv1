@@ -167,6 +167,10 @@ std::string Expression::tostr()
 		}
 		ret += terms[0].tostr();
 	}
+	else
+	{
+		return ("0");
+	}
 	for (size_t i = 1; i < terms.size(); i++)
 	{
 		if (terms[i].coef == 0)
