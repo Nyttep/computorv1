@@ -159,6 +159,7 @@ std::string Expression::tostr()
 	{
 		return ("0");
 	}
+
 	if (terms[0].coef != 0)
 	{
 		if (terms[0].coef < 0)
@@ -167,24 +168,30 @@ std::string Expression::tostr()
 		}
 		ret += terms[0].tostr();
 	}
-	else
+	else if (terms.size() == 1)
 	{
 		return ("0");
 	}
+
 	for (size_t i = 1; i < terms.size(); i++)
 	{
 		if (terms[i].coef == 0)
 			continue;
 		if (terms[i].coef >= 0)
 		{
-			ret += " + ";
+			if (ret.size() > 0)
+				ret += " + ";
 		}
 		else
 		{
-			ret += " - ";
+			if (ret.size() > 0)
+				ret += " - ";
+			else
+				ret += "-";
 		}
 		ret += terms[i].tostr();
 	}
+
 	return (ret);
 }
 
