@@ -103,10 +103,12 @@ void Equation::solve()
 
 		double ret = this->solveDegree1();
 
-		if (ret == (int)ret) // check if the result of the division is a whole number
-			std::cout << ret << std::endl;
-		else // if not, also display the result as a fraction
-			std::cout << -(this->lhs.getCoef(0)) << "/" << this->lhs.getCoef(1) << " (" << ret << ")" << std::endl;
+		// commented parts are for separation of whole number/decimal number
+
+		// if (ret == (int)ret) // check if the result of the division is a whole number
+		std::cout << ret << std::endl;
+		// else // if not, also display the result as a fraction
+		// 	std::cout << -(this->lhs.getCoef(0)) << "/" << this->lhs.getCoef(1) << " (" << ret << ")" << std::endl;
 		break;
 	}
 
@@ -161,6 +163,13 @@ double Equation::solveDegree1()
 		std::cout << "Error: Division overflow when doing " << -a << " / " << b << std::endl;
 		exit(1);
 	}
+
+	if (b == 0) // it should never be the case but still just in case
+	{
+		std::cout << "Error: Division by zero" << std::endl;
+		exit(1);
+	}
+
 	return (-a / b);
 }
 
