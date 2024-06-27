@@ -106,7 +106,10 @@ void Equation::solve()
 		// commented parts are for separation of whole number/decimal number
 
 		// if (ret == (int)ret) // check if the result of the division is a whole number
-		std::cout << ret << std::endl;
+		if (ret == 0) // honestly idk why it prints -0 if i dont do that
+			std::cout << "0" << std::endl;
+		else
+			std::cout << ret << std::endl;
 		// else // if not, also display the result as a fraction
 		// 	std::cout << -(this->lhs.getCoef(0)) << "/" << this->lhs.getCoef(1) << " (" << ret << ")" << std::endl;
 		break;
@@ -123,12 +126,18 @@ void Equation::solve()
 			std::pair<double, double> ret = this->solveDegree2(delta);
 
 			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
-			std::cout << ret.first << std::endl;
+			if (ret.first == 0) // honestly idk why it prints -0 if i dont do that
+				std::cout << "0" << std::endl;
+			else
+				std::cout << ret.first << std::endl;
 			// else
 			// 	std::cout << -(this->lhs.getCoef(1)) + sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 
 			// if (ret.second == (int)ret.second) // if the result of the equation is a whole number
-			std::cout << ret.second << std::endl;
+			if (ret.second == 0) // honestly idk why it prints -0 if i dont do that
+				std::cout << "0" << std::endl;
+			else
+				std::cout << ret.second << std::endl;
 			// else
 			// 	std::cout << -(this->lhs.getCoef(1)) - sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.second << ")" << std::endl;
 		}
@@ -138,7 +147,10 @@ void Equation::solve()
 			std::pair<double, double> ret = this->solveDegree2(delta);
 
 			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
-			std::cout << ret.first << std::endl;
+			if (ret.first == 0) // honestly idk why it prints -0 if i dont do that
+				std::cout << "0" << std::endl;
+			else
+				std::cout << ret.first << std::endl;
 			// else
 			// 	std::cout << -(this->lhs.getCoef(1)) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 		}
