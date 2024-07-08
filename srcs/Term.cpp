@@ -83,13 +83,16 @@ std::string Term::tostr()
 {
 	std::string ret;
 	std::ostringstream ss;
+
 	if (this->coef == 0)
 		return ("");
-	if ((this->coef != 1 && this->coef != -1) || this->var == -1)
+
+	if ((this->coef != 1 && this->coef != -1) || this->power == 0)
 	{
 		ss << std::abs(this->coef);
 		ret += ss.str();
 	}
+
 	if (this->power > 0 && this->coef != 0)
 	{
 		if (!ret.empty())
