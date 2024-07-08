@@ -79,5 +79,22 @@ Calculating determinant: 0 = 0^2 - 4 * -4 * 0
 Discriminant is equal to zero, the solution is:
 0"
 
+run_test "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0" "Reduced form : 4 + 4 * X - 9.3 * X^2 = 0
+Polynomial degree: 2
+Calculating determinant: 164.8 = 4^2 - 4 * -9.3 * 4
+Discriminant is strictly positive, the two solutions are:
+-0.475131
+0.905239"
+
+run_test "5 * X^0 + 4 * X^1 = 4 * X^0" "Reduced form : 1 + 4 * X = 0
+Polynomial degree: 1
+The solution is:
+-0.25"
+
+run_test "5 + 4 * X + X^2= X^2" "Reduced form : 5 + 4 * X = 0
+Polynomial degree: 1
+The solution is:
+-1.25"
+
 # Print test results
 echo "Passed $passed_tests/$total_tests tests"
