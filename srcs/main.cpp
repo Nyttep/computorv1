@@ -22,17 +22,6 @@ int main(int ac, char **av)
 			return (1);
 		}
 
-		// check if equation is valid
-		try
-		{
-			eq.checkValid();
-		}
-		catch (const char *e)
-		{
-			std::cerr << e << '\n';
-			return (1);
-		}
-
 		eq.simplify(); // simplify equation
 
 		// check if equation is still valid
