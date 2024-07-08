@@ -87,7 +87,7 @@ std::string Term::tostr()
 	if (this->coef == 0)
 		return ("");
 
-	if ((this->coef != 1 && this->coef != -1) || this->power == 0)
+	if ((this->coef != 1 && this->coef != -1) || this->power == 0) // should I write the coef
 	{
 		ss << std::abs(this->coef);
 		ret += ss.str();
