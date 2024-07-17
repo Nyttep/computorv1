@@ -1,12 +1,28 @@
 #include "computorv1.hpp"
 
+bool verbose = false;
+
 int main(int ac, char **av)
 {
 	try // catch bad_alloc exceptions
 	{
-		if (!check_args(ac)) // check if there is only one argument
+		if (ac == 3) // check if there is 2 arguments
 		{
-			std::cout << "usage: ./computorv1 <equation>" << std::endl;
+			if (av[1] == std::string("-v") || av[1] == std::string("--verbose")) // check if first argument is -v or --verbose
+			{
+				std::cout << "Verbose mode enabled" << std::endl;
+				verbose = true; // set verbose to true
+				av++;			// shift arguments
+			}
+			else
+			{
+				std::cout << "Usage: ./computorv1 [arg] <equation>" << std::endl;
+				return (1);
+			}
+		}
+		else if (ac != 2) // check if there is a wrong number of arguments
+		{
+			std::cout << "Usage: ./computorv1 [arg] <equation>" << std::endl;
 			return (1);
 		}
 

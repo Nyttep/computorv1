@@ -14,6 +14,8 @@
 #include "Expression.hpp"
 #include "Equation.hpp"
 
+extern bool verbose;
+
 int check_args(int ac);
 
 bool strToDoubleOverflow(std::string str);
