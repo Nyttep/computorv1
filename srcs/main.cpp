@@ -10,7 +10,7 @@ int main(int ac, char **av)
 		{
 			if (av[1] == std::string("-v") || av[1] == std::string("--verbose")) // check if first argument is -v or --verbose
 			{
-				std::cout << "Verbose mode enabled" << std::endl;
+				// std::cout << "Verbose mode enabled" << std::endl;
 				verbose = true; // set verbose to true
 				av++;			// shift arguments
 			}
