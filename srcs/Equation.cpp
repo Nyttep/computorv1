@@ -230,7 +230,7 @@ double Equation::getDelta()
 	}
 
 	if (verbose)
-		std::cout << "Calculating determinant: " << b * b - 4 * a * c << " = " << b << "^2" << " - " << 4 << " * " << a << " * " << c << std::endl;
+		std::cout << "Calculating discriminant: " << b * b - 4 * a * c << " = " << b << "^2" << " - " << 4 << " * " << a << " * " << c << std::endl;
 
 	return (b * b - 4 * a * c);
 }
