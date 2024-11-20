@@ -259,7 +259,7 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 		}
 
 		if (verbose)
-			std::cout << "\nCalculating first solution: (" << -b << " + " << "√Δ" << ") / (" << 2 * a << ")" << std::endl;
+			std::cout << "\nCalculating first solution: (" << -b << " + " << "√" << delta << ") / (" << 2 * a << ")" << std::endl;
 
 		double x1 = (-b + std::sqrt(delta)) / (2 * a);
 
@@ -275,7 +275,7 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 		}
 
 		if (verbose)
-			std::cout << "Calculating second solution: (" << -b << " - " << "√Δ" << ") / (" << 2 * a << ")" << std::endl;
+			std::cout << "Calculating second solution: (" << -b << " - " << "√" << delta << ") / (" << 2 * a << ")" << std::endl;
 
 		double x2 = (-b - std::sqrt(delta)) / (2 * a);
 
