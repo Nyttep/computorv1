@@ -13,7 +13,7 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++20 -g
 
-NAME = computorv1
+NAME = computor
 
 RM = rm -rf
 
