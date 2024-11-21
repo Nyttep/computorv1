@@ -4,7 +4,7 @@ bool verbose = false;
 
 void printUsage()
 {
-	std::cout << "Usage: ./computorv1 [-v] <equation>" << std::endl;
+	std::cout << "Usage: ./computor [-v] <equation>" << std::endl;
 }
 
 bool parseArgs(int ac, char **av)
