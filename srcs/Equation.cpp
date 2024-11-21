@@ -130,7 +130,7 @@ void Equation::solve()
 			if (!verbose)
 				std::cout << ", the two solutions are:" << std::endl;
 			else
-				std::cout << "The two solutions are: " << std::endl;
+				std::cout << "The two solutions are:" << std::endl;
 
 			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
 			if (ret.first == 0) // honestly idk why it prints -0 if i dont do that
@@ -155,9 +155,9 @@ void Equation::solve()
 			std::pair<double, double> ret = this->solveDegree2(delta);
 
 			if (!verbose)
-				std::cout << ", the solution is: " << std::endl;
+				std::cout << ", the solution is:" << std::endl;
 			else
-				std::cout << "The solution is: " << std::endl;
+				std::cout << "The solution is:" << std::endl;
 
 			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
 			if (ret.first == 0) // honestly idk why it prints -0 if i dont do that
