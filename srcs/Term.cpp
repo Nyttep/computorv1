@@ -25,7 +25,7 @@ Term &Term::operator=(const Term &rhs)
 	return (*this);
 }
 
-Term &Term::operator=(const std::string &rhs) // HANDLE IF NO COEFF (x^2)
+Term &Term::operator=(const std::string &rhs)
 {
 	std::string copy = rhs;
 	if (rhs.length() > 0)

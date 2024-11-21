@@ -31,7 +31,6 @@ Equation &Equation::operator=(const Equation &rhs)
 
 Equation &Equation::operator=(const std::string &rhs)
 {
-	// std::erase(rhs, ' ');
 	std::string tmp = rhs.substr(0, rhs.find('='));
 	this->lhs = tmp;
 	if (rhs.find('=') != rhs.npos)
@@ -55,18 +54,12 @@ bool Equation::checkValid()
 
 void Equation::simplify()
 {
-	// Term tmp;
-
-	// move everything to the left side
 	while (this->rhs.terms.size() > 0)
 	{
 		this->rhs.terms[0].coef *= -1;
 		this->lhs.terms.push_back(this->rhs.terms[0]);
-		// tmp = this->rhs.terms[0];
 		this->rhs.terms.erase(this->rhs.terms.begin());
 	}
-	// this->rhs.terms.push_back(tmp);
-	// this->rhs.terms.push_back(Term());
 
 	this->lhs.simplify();
 	this->lhs.normalize();
@@ -104,15 +97,10 @@ void Equation::solve()
 
 		std::cout << "The solution is:" << std::endl;
 
-		// commented parts are for separation of whole number/decimal number
-
-		// if (ret == (int)ret) // check if the result of the division is a whole number
 		if (ret == 0) // honestly idk why but it prints -0 if i dont do that
 			std::cout << "0" << std::endl;
 		else
 			std::cout << ret << std::endl;
-		// else // if not, also display the result as a fraction
-		// 	std::cout << -(this->lhs.getCoef(0)) << "/" << this->lhs.getCoef(1) << " (" << ret << ")" << std::endl;
 		break;
 	}
 
@@ -120,7 +108,6 @@ void Equation::solve()
 	{
 		std::cout << "Polynomial degree: 2" << std::endl;
 		double delta = this->getDelta();
-		// commented parts are for separation of whole number/decimal number
 		if (delta > 0)
 		{
 			std::cout << "Discriminant is strictly positive";
@@ -132,21 +119,15 @@ void Equation::solve()
 			else
 				std::cout << "The two solutions are:" << std::endl;
 
-			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
 			if (ret.first == 0) // honestly idk why it prints -0 if i dont do that
 				std::cout << "0" << std::endl;
 			else
 				std::cout << ret.first << std::endl;
-			// else
-			// 	std::cout << -(this->lhs.getCoef(1)) + sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 
-			// if (ret.second == (int)ret.second) // if the result of the equation is a whole number
 			if (ret.second == 0) // honestly idk why it prints -0 if i dont do that
 				std::cout << "0" << std::endl;
 			else
 				std::cout << ret.second << std::endl;
-			// else
-			// 	std::cout << -(this->lhs.getCoef(1)) - sqrt(delta) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.second << ")" << std::endl;
 		}
 		else if (delta == 0)
 		{
@@ -159,13 +140,10 @@ void Equation::solve()
 			else
 				std::cout << "The solution is:" << std::endl;
 
-			// if (ret.first == (int)ret.first) // if the result of the equation is a whole number
 			if (ret.first == 0) // honestly idk why it prints -0 if i dont do that
 				std::cout << "0" << std::endl;
 			else
 				std::cout << ret.first << std::endl;
-			// else
-			// 	std::cout << -(this->lhs.getCoef(1)) << "/" << 2 * this->lhs.getCoef(0) << " (" << ret.first << ")" << std::endl;
 		}
 		else
 		{
