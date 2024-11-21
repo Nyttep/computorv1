@@ -4,7 +4,7 @@
 run_test() {
 	local input="$1"
 	local expected_output="$2"
-	local output=$(./computorv1 "$input")
+	local output=$(./computor "$input")
 	if [ "$output" == "$expected_output" ]; then
 		echo -e "\e[32mTest passed: $input\e[0m" # Green color for passed test
 		((passed_tests++))
