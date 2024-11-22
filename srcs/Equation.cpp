@@ -129,7 +129,21 @@ void Equation::solve()
 			else
 				std::cout << ret.second << std::endl;
 		}
-		else if (delta == 0)
+		else if (delta < 0)
+		{
+			std::cout << "Discriminant is strictly negative";
+
+			std::pair<double, double> ret = this->solveDegree2(delta);
+
+			if (!verbose)
+				std::cout << ", the two solutions are:" << std::endl;
+			else
+				std::cout << "The two solutions are:" << std::endl;
+
+			std::cout << ret.first << " + " << ret.second << "i" << std::endl;
+			std::cout << ret.first << " - " << ret.second << "i" << std::endl;
+		}
+		else // delta == 0
 		{
 			std::cout << "Discriminant is equal to zero";
 
@@ -144,10 +158,6 @@ void Equation::solve()
 				std::cout << "0" << std::endl;
 			else
 				std::cout << ret.first << std::endl;
-		}
-		else
-		{
-			std::cout << "Discriminant is strictly negative, there is no real solution" << std::endl;
 		}
 		break;
 	}
@@ -220,9 +230,9 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 
 	if (delta > 0)
 	{
-		if (doubleOperationOverflow(-b, sqrt(delta), '+'))
+		if (doubleOperationOverflow(-b, std::sqrt(delta), '+'))
 		{
-			std::cout << "Error: Addition overflow when doing " << -b << " + " << sqrt(delta) << std::endl;
+			std::cout << "Error: Addition overflow when doing " << -b << " + " << std::sqrt(delta) << std::endl;
 			exit(1);
 		}
 		if (doubleOperationOverflow(2, a, '*'))
@@ -230,9 +240,9 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 			std::cout << "Error: Multiplication overflow when doing " << 2 << " * " << a << std::endl;
 			exit(1);
 		}
-		if (doubleOperationOverflow(-b + sqrt(delta), 2 * a, '/'))
+		if (doubleOperationOverflow(-b + std::sqrt(delta), 2 * a, '/'))
 		{
-			std::cout << "Error: Division overflow when doing " << -b + sqrt(delta) << " / " << 2 * a << std::endl;
+			std::cout << "Error: Division overflow when doing " << -b + std::sqrt(delta) << " / " << 2 * a << std::endl;
 			exit(1);
 		}
 
@@ -241,14 +251,14 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 
 		double x1 = (-b + std::sqrt(delta)) / (2 * a);
 
-		if (doubleOperationOverflow(-b, sqrt(delta), '-'))
+		if (doubleOperationOverflow(-b, std::sqrt(delta), '-'))
 		{
-			std::cout << "Error: Substraction overflow when doing " << -b << " - " << sqrt(delta) << std::endl;
+			std::cout << "Error: Substraction overflow when doing " << -b << " - " << std::sqrt(delta) << std::endl;
 			exit(1);
 		}
-		if (doubleOperationOverflow(-b - sqrt(delta), 2 * a, '/'))
+		if (doubleOperationOverflow(-b - std::sqrt(delta), 2 * a, '/'))
 		{
-			std::cout << "Error: Division overflow when doing " << -b - sqrt(delta) << " / " << 2 * a << std::endl;
+			std::cout << "Error: Division overflow when doing " << -b - std::sqrt(delta) << " / " << 2 * a << std::endl;
 			exit(1);
 		}
 
@@ -259,7 +269,37 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 
 		return (std::make_pair(x1, x2));
 	}
-	else if (delta == 0)
+	else if (delta < 0)
+	{
+		if (verbose)
+		{
+			std::cout << "\nCalculating first solution: (" << -b << " + " << "√" << -delta << "i) / (" << 2 * a << ")" << std::endl;
+			std::cout << "Calculating second solution: (" << -b << " - " << "√" << -delta << "i) / (" << 2 * a << ")" << std::endl;
+		}
+
+		if (doubleOperationOverflow(2, a, '*'))
+		{
+			std::cout << "Error: Multiplication overflow when doing " << 2 << " * " << a << std::endl;
+			exit(1);
+		}
+
+		if (doubleOperationOverflow(-b, 2 * a, '/'))
+		{
+			std::cout << "Error: Multiplication overflow when doing " << -b << " / " << 2 * a << std::endl;
+			exit(1);
+		}
+
+		if (doubleOperationOverflow(std::sqrt(-delta), 2 * a, '/'))
+		{
+			std::cout << "Error: Multiplication overflow when doing " << std::sqrt(-delta) << " * " << 2 * a << std::endl;
+			exit(1);
+		}
+
+		double x1 = -b / (2 * a);
+		double x2 = std::sqrt(-delta) / (2 * a);
+		return (std::make_pair(x1, x2));
+	}
+	else // delta == 0
 	{
 		if (doubleOperationOverflow(2, a, '*'))
 		{
@@ -277,9 +317,5 @@ std::pair<double, double> Equation::solveDegree2(double delta)
 
 		double x = -b / (2 * a);
 		return (std::make_pair(x, x));
-	}
-	else
-	{
-		return (std::make_pair(0, 0));
 	}
 }

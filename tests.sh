@@ -50,7 +50,9 @@ The solution is:
 
 run_test "3 + 2 * X + 4 * X^2 = 0" "Reduced form : 3 + 2 * X + 4 * X^2 = 0
 Polynomial degree: 2
-Discriminant is strictly negative, there is no real solution"
+Discriminant is strictly negative, the two solutions are:
+-0.25 + 0.829156i
+-0.25 - 0.829156i"
 
 run_test "3 + 2 * X - 4 * X^2 = -8 + 7 * X ^2 - 5 * X + 9 * X^2" "Reduced form : 11 + 7 * X - 20 * X^2 = 0
 Polynomial degree: 2
